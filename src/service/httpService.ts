@@ -1,6 +1,7 @@
 import { ErmisConfig } from '..';
 import { encodeBase64 } from '../utils';
 import { IService, MessageEvent } from './types';
+import fetch from 'node-fetch';
 
 type Config = {
   baseUrl: string;
