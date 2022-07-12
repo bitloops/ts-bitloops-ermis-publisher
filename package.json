@@ -1,7 +1,7 @@
 {
   "name": "bitloops-ermis-publisher",
-  "version": "1.0.0",
-  "description": "NodeJS publisher library for Ermis",
+  "version": "0.0.1",
+  "description": "Bitloops Ermis publisher library for the browser and node.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
