@@ -22,7 +22,7 @@ class Ermis {
       throw new Error(`Subject is invalid: ${data}`);
     }
 
-    if (!this.validateData(subject)) {
+    if (!this.validateData(data)) {
       throw new Error(`Data is invalid: ${data}`);
     }
 
