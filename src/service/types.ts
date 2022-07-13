@@ -2,7 +2,6 @@ import { Config } from '../config';
 
 export type MessageEvent = {
   subject: string;
-  string: string;
   data: any;
 };
 
