@@ -21,7 +21,7 @@ export class Config {
     this._secret = options.secret;
     this._host = options.host ?? 'api.ermis.io';
     this._ssl = options.ssl || false;
-    this._publishPath = '/publish';
+    this._publishPath = '/bitloops/publish';
   }
 
   getConfig(): ErmisOptions {
