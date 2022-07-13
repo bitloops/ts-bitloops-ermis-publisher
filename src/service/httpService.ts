@@ -1,20 +1,14 @@
-import { ErmisConfig } from '..';
 import { encodeBase64 } from '../utils';
 import { IService, MessageEvent } from './types';
 import fetch from 'node-fetch';
-
-type Config = {
-  baseUrl: string;
-};
+import { Config } from '../config';
 
 export class HttpService implements IService {
-  constructor(private config: Config) {}
-
-  async publishMessage(messageEvent: MessageEvent, config: ErmisConfig) {
-    const { subject, data } = messageEvent;
-    const { applicationId, publicKey, secret } = config;
-    console.log('hi', subject, data);
-    const url = `${this.config.baseUrl}/publish`;
+  async publishMessage(messageEvent: MessageEvent, config: Config) {
+    // const { subject, data } = messageEvent;
+    const { applicationId, publicKey, secret } = config.getConfig();
+    const { baseUrl, publishPath } = config;
+    const url = `${baseUrl}${publishPath}`;
 
     console.log(`Basic ${encodeBase64(publicKey + ':' + secret)}`);
     const response = await fetch(url, {

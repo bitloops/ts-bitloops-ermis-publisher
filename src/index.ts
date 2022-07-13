@@ -1,29 +1,24 @@
+import { Config, ErmisOptions } from './config';
 import { service } from './service';
 import { IService } from './service/types';
-//import {INVALIDSUBJECT, INVALIDDATA} from '../constants/index'
-
-export type ErmisConfig = {
-  applicationId: string;
-  publicKey: string;
-  secret: string;
-};
+import { INVALID_SUBJECT, INVALID_DATA } from './constants/index';
 
 class Ermis {
-  private config: ErmisConfig;
+  private config: Config;
   private service: IService;
 
-  constructor(private options: ErmisConfig) {
-    this.config = options;
+  constructor(private options: ErmisOptions) {
+    this.config = new Config(options);
     this.service = service;
   }
 
   publish(subject: string, data: any) {
     if (!this.validateSubject(subject)) {
-      throw new Error(`Subject is invalid: ${data}`);
+      throw new Error(INVALID_SUBJECT + data);
     }
 
     if (!this.validateData(data)) {
-      throw new Error(`Data is invalid: ${data}`);
+      throw new Error(INVALID_DATA + data);
     }
 
     const eventMessage = {
