@@ -33,7 +33,7 @@ test('Authorization basic header', (done) => {
       //   console.log('privateKey', privateKey);
       const authHeader = `Basic ${encodeBase64(publicKey + ':' + privateKey)}`;
       const [, payload] = authHeader.split(' ');
-      console.log(payload);
+      // console.log(payload);
       const [publicKeyFromHeader, privateKeyFromHeader] = decodeBase64(payload).split(':');
       expect(publicKeyFromHeader).toEqual(publicKey);
       expect(privateKeyFromHeader).toEqual(privateKey);
