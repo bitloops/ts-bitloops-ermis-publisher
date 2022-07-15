@@ -1,38 +1,35 @@
 import { SignatureToken } from '../signatureToken';
-import * as crypto from 'crypto';
 
 jest.setTimeout(15000);
 
-let publicKey: any, privateKey: any;
-beforeAll(() => {
-  // The `generateKeyPairSync` method accepts two arguments:
-  // 1. The type ok keys we want, which in this case is "rsa"
-  // 2. An object with the properties of the key
-  const pair = crypto.generateKeyPairSync('rsa', {
-    // The standard secure default length for RSA keys is 2048 bits
-    modulusLength: 2048,
-  });
-  publicKey = pair.publicKey;
-  privateKey = pair.privateKey;
-});
+const key = 'abcd';
+const secretKey = '2fx8cj2g69l7rot9lm1iv68r6i6wp4kx';
 
 // make simple test for SignatureToken
 test('SignatureToken', () => {
   const dataHash = 'hello.com';
-  const signatureToken = new SignatureToken(publicKey, privateKey);
+  const signatureToken = new SignatureToken(key, secretKey);
 
   const signature = signatureToken.sign(dataHash);
-
-  expect(signatureToken.verify(dataHash, signature)).toBe(true);
+  const result = signatureToken.verify(dataHash, signature);
+  expect(result).toBeTruthy();
 });
 
 // make a simple negative test for SignatureToken
 
 test('SignatureToken negative', () => {
   const dataHash = 'hello.com';
-  const signatureToken = new SignatureToken(publicKey, privateKey);
+  const signatureToken = new SignatureToken(key, secretKey);
 
   const signature = signatureToken.sign(dataHash);
 
   expect(signatureToken.verify('hell2.com', signature)).toBe(false);
 });
+test('Check if sign is correct'),
+  () => {
+    const dataHash = 'hello';
+    const expectedHash = '3f5f6aee17b5e98ab3849993425e7281704e994745c79509c10c66a8728353c9';
+    const signatureToken = new SignatureToken(key, secretKey);
+    const signature = signatureToken.sign(dataHash);
+    expect(signature.toString).toBe(expectedHash);
+  };

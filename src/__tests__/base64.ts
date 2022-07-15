@@ -1,7 +1,7 @@
 import { decodeBase64, encodeBase64 } from '../utils';
 import { generateKeyPair } from 'crypto';
 
-jest.setTimeout(15000);
+jest.setTimeout(20000);
 
 test('base64', () => {
   const data = 'hello.com';
